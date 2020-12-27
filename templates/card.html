@@ -5,7 +5,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../static/style.css">
 </head>
-
+{% for Record in HealthRecords %}
 <body>
 
   <section id="patients-container">
@@ -32,17 +32,19 @@
           <span>Weight: <span class="dynamic-data">{{weight}}</span></span>
         </div>
 
+
         <div class="content-aligning-fix">
           <P class="p-fix">Health Record</P>
           <div class="content-aligning-fix-i">
-            <span>Doctor Name: <span class="dynamic-data">{{DoctorName}}</span></span>
-            <span>Date: <span class="dynamic-data">{{Date}}</span></span>
+            <span>Doctor Name: <span class="dynamic-data">{{Record["Doctor_Name"]}}</span></span>
+            <span>Date: <span class="dynamic-data">{{Record["Date"]}}</span></span>
           </div>
           <div class="content-aligning-fix-i">
-            <span>Accident: <span class="dynamic-data">{{Accident}}</span></span>
-            <span>Diagnose: <span class="dynamic-data">{{Diagnose}}</span></span>
+            <span>Accident: <span class="dynamic-data">{{Record["Accident"]}}</span></span>
+            <span>Diagnose: <span class="dynamic-data">{{Record["Diagnose"]}}</span></span>
           </div>
         </div>
+
 
         <div class="content-aligning-fix">
           <P class="p-fix">Medical History</P>
@@ -57,5 +59,6 @@
   </section>
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </body>
+{% endfor %}  
 
 </html>
