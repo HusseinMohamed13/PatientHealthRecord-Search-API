@@ -7,7 +7,6 @@ myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["mydatabase"]
 mycol = mydb["customers"]
 
-
 @app.route('/', methods=['GET'])
 def SearchForm():
     return render_template("searchForm.html")
