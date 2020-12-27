@@ -26,17 +26,17 @@ def hello_world():
         if Check != "checked":
             return Check
 
-        mydoc = SearchInDataBaseBYDate(ID, Date)
-        mydoc1 = SearchInDataBaseBYAcident(ID, Ac)
+        mydoc = None    
+        searchoption = GetSearchOption(userDetails)
+        if(searchoption==None):
+            return "must choose search option"
+        elif (searchoption=="date"):
+            mydoc = SearchInDataBaseBYDate(ID, Date)
+        elif(searchoption=="accidenttype"):
+            mydoc = SearchInDataBaseBYAcident(ID, Ac)
 
-        if mydoc.count() == 0 and mydoc1.count() == 0:
-            return "<h1>user not found</h1>"
-
-        elif mydoc1.count() == 0 and mydoc.count() > 0:
-            return render_template("card.html", HealthRecords=mydoc, name=mydoc[0]["name"], age=mydoc[0]["age"], address=mydoc[0]["address"], phone=mydoc[0]["Phone"], height=mydoc[0]["height"], weight=mydoc[0]["weight"])
-
-        elif mydoc.count() == 0 and mydoc1.count() > 0:
-            return render_template("card.html", HealthRecords=mydoc1, name=mydoc1[0]["name"], age=mydoc1[0]["age"], address=mydoc1[0]["address"], phone=mydoc1[0]["Phone"], height=mydoc1[0]["height"], weight=mydoc1[0]["weight"])
+        if mydoc.count() == 0:
+            return "user not found"
         else:
             return render_template("card.html", HealthRecords=mydoc, name=mydoc[0]["name"], age=mydoc[0]["age"], address=mydoc[0]["address"], phone=mydoc[0]["Phone"], height=mydoc[0]["height"], weight=mydoc[0]["weight"])
 
@@ -50,11 +50,13 @@ def GetID(userDetails):
 
     return int(Id)
 
-
 def GetDate(userDetails):
     Date = userDetails['date']
     return str(Date)
 
+def GetSearchOption(userDetails):
+    SearchOption = userDetails['searchoption']
+    return str(SearchOption)
 
 def GetAcident(userDetails):
     Acident = userDetails['Accident']
@@ -83,4 +85,3 @@ def CheckInPuts(ID, Date, Ac):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
