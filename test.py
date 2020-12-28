@@ -1,16 +1,17 @@
 import unittest
 
-from API import GetSearchOption,SearchInDataBaseBYDate, SearchInDataBaseBYAcident, GetID, GetDate, GetAcident, CheckInPuts
+from API import GetSearchOption, SearchInDataBaseBYDate, SearchInDataBaseBYAcident, GetID, GetDate, GetAcident, CheckInPuts
 
 
-obj1 = {"_id": 1, "id": 1, "name": "John", "age": 20, "address": "Highway 37", "Phone": "0100000", "height": 170,
-        "weight": 60, "MedicalHistory": "sokar", "Date": "2020-12-25", "Doctor_Name": "magdy", "Diagnose": "Eds", "Accident": "Car Accident"}
-obj2 = {"_id": 2, "id": 2, "name": "ahmed", "age": 30, "address": "imbaba", "Phone": "0100000", "height": 180, "weight": 80,
-        "MedicalHistory": "sokar", "Date": "2020-11-25", "Doctor_Name": "hassan", "Diagnose": "cancer", "Accident": "Bus Accident"}
-obj3 = {"_id": 3, "id": 1, "name": "ahmed", "age": 30, "address": "imbaba", "Phone": "0100000", "height": 180, "weight": 80,
-        "MedicalHistory": "sokar", "Date": "2010-11-25", "Doctor_Name": "hassan", "Diagnose": "cancer", "Accident": "Train Accident"}
+obj1 = {"_id": 1, "id": 1, "name": "John", "age": 20, "address": "Highway 37", "Phone": "01304050", "height": 170,
+        "weight": 60, "MedicalHistory": "diabetic , Hypertension", "Date": "2020-12-25", "Doctor_Name": "magdy", "Diagnose": "Immune Deficiency Syndrome", "Accident": "Car Accident"}
+obj2 = {"_id": 2, "id": 2, "name": "ahmed", "age": 30, "address": "imbaba", "Phone": "01305603", "height": 160, "weight": 80,
+        "MedicalHistory": "diabetic", "Date": "2011-11-25", "Doctor_Name": "Wassif", "Diagnose": "cancer", "Accident": "Bus Accident"}
+obj3 = {"_id": 3, "id": 1, "name": "John", "age": 20, "address": "Highway 37", "Phone": "01304050", "height": 170, "weight": 60,
+        "MedicalHistory": "diabetic , Hypertension", "Date": "2010-11-25", "Doctor_Name": "Hanan", "Diagnose": "Preumonin", "Accident": "Train Accident"}
 
-obj4 = {"id": 1, "date": "2010-11-25", "Accident": "Car Accident", "searchoption": "accidenttype"}
+obj4 = {"id": 1, "date": "2010-11-25",
+        "Accident": "Car Accident", "searchoption": "accidenttype"}
 obj5 = {"id": "", "date": "2010-11-25", "Accident": "Car Accident"}
 
 
@@ -68,11 +69,10 @@ class UnitTest(unittest.TestCase):
         self.assertEqual(result, Expected)
 
     def test1_GetSearchOption(self):
-        result = GetSearchOption(obj4["searchoption"])
+        result = GetSearchOption(obj4)
         Expected = "accidenttype"
         self.assertEqual(result, Expected)
-    
+
 
 if __name__ == '__main__':
     unittest.main()
-
