@@ -1,11 +1,16 @@
 from flask import Flask, redirect, url_for, render_template, session, request
-import pymongo
+import firebase_admin
+from firebase_admin import credentials, firestore, initialize_app
 
 app = Flask(__name__)
 
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-mydb = myclient["mydatabase"]
-mycol = mydb["customers"]
+
+cred = credentials.Certificate("gg-ez-4f7b5-firebase-adminsdk-1e3vs-47f421d501.json")
+firebase_admin.initialize_app(cred)
+db = firestore.client()
+doc_ref = db.collection(u'HealthRecord')
+     
+
 
 @app.route('/', methods=['GET'])
 def SearchForm():
@@ -35,7 +40,7 @@ def hello_world():
         elif(searchoption=="accidenttype"):
             mydoc = SearchInDataBaseBYAcident(ID, Ac)
 
-        if mydoc.count() == 0:
+        if len(mydoc) == 0:
             return "user not found"
         else:
             return render_template("card.html", HealthRecords=mydoc, name=mydoc[0]["name"], age=mydoc[0]["age"], address=mydoc[0]["address"], phone=mydoc[0]["Phone"], height=mydoc[0]["height"], weight=mydoc[0]["weight"])
@@ -64,16 +69,12 @@ def GetAcident(userDetails):
 
 
 def SearchInDataBaseBYDate(ID, Date):
-    myquery = {"id": ID, "Date": Date}
-    mydoc = mycol.find(myquery)
-    return mydoc
-
+   mydoc = [doc.to_dict() for doc in doc_ref.where(u'id', u'==', ID).where(u"Date", u"==", Date).stream()]
+   return mydoc
 
 def SearchInDataBaseBYAcident(ID, Accident):
-    myquery = {"id": ID, "Accident": Accident}
-    mydoc = mycol.find(myquery)
+    mydoc = [doc.to_dict() for doc in doc_ref.where(u'id', u'==', ID).where(u"Accident", u"==", Accident).stream()]
     return mydoc
-
 
 def CheckInPuts(ID, Date, Ac):
     if ID == None:
