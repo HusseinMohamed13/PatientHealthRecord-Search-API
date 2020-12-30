@@ -3,11 +3,11 @@ import unittest
 from API import GetSearchOption, SearchInDataBaseBYDate, SearchInDataBaseBYAcident, GetID, GetDate, GetAcident, CheckInPuts
 
 
-obj1 = {"_id": 1, "id": 1, "name": "John", "age": 20, "address": "Highway 37", "Phone": "01304050", "height": 170,
+obj1 = {"id": 1, "name": "John", "age": 20, "address": "Highway 37", "Phone": "01304050", "height": 170,
         "weight": 60, "MedicalHistory": "diabetic , Hypertension", "Date": "2020-12-25", "Doctor_Name": "magdy", "Diagnose": "Immune Deficiency Syndrome", "Accident": "Car Accident"}
-obj2 = {"_id": 2, "id": 2, "name": "ahmed", "age": 30, "address": "imbaba", "Phone": "01305603", "height": 160, "weight": 80,
+obj2 = {"id": 2, "name": "ahmed", "age": 30, "address": "imbaba", "Phone": "01305603", "height": 160, "weight": 80,
         "MedicalHistory": "diabetic", "Date": "2011-11-25", "Doctor_Name": "Wassif", "Diagnose": "cancer", "Accident": "Bus Accident"}
-obj3 = {"_id": 3, "id": 1, "name": "John", "age": 20, "address": "Highway 37", "Phone": "01304050", "height": 170, "weight": 60,
+obj3 = {"id": 1, "name": "John", "age": 20, "address": "Highway 37", "Phone": "01304050", "height": 170, "weight": 60,
         "MedicalHistory": "diabetic , Hypertension", "Date": "2010-11-25", "Doctor_Name": "Hanan", "Diagnose": "Preumonin", "Accident": "Train Accident"}
 
 obj4 = {"id": 1, "date": "2010-11-25",
@@ -75,4 +75,4 @@ class UnitTest(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main(argv=['first-arg-is-ignored'], exit=False)
+    unittest.main()
