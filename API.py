@@ -4,12 +4,12 @@ from firebase_admin import credentials, firestore, initialize_app
 
 app = Flask(__name__)
 
-
+'''
 cred = credentials.Certificate("gg-ez-4f7b5-firebase-adminsdk-1e3vs-47f421d501.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 doc_ref = db.collection(u'HealthRecord')
-     
+'''     
 
 
 @app.route('/', methods=['GET'])
